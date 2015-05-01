@@ -16,7 +16,7 @@ More on [the setup on my blog](http://blog.soemarko.com/post/116313509168/diy-so
 - DS18B20 and OneWire: thermometer sensor library
 - PID and PID_AutoTune: PID and the auto tune library
 
-The code is simple enough to just pasted in, you just need to add the access token and your Core device ID to the `Sous_Vide.pch`. The iOS app very basic and it's enough for anyone to implement their own style and polish to the app. So I probably won't update the iOS part anymore.
+The code is simple enough to just pasted in, you just need to add the access token and your Core device ID to the `Sous_Vide.pch`. The iOS app provided is a barebone app, it's good enough for anyone to get started and implement their own style, polish, or functionality.
 
 ## License
 
