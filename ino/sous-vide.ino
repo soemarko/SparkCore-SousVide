@@ -9,7 +9,9 @@
 int ds18b20Pin = D6;
 int ledPin = D7;
 // Output pin where relay is connected
-int relayPin = A6;
+int relayPin = D4;
+int relayON = LOW; // sinking SSR (negative go to pin)
+int relayOFF = HIGH;
 
 char publishString[64];
 
@@ -55,7 +57,7 @@ void setup() {
 
     // Set relay pin mode to output
     pinMode(relayPin, OUTPUT);
-    digitalWrite(relayPin, LOW);
+    digitalWrite(relayPin, relayOFF);
 
     // Point temperature default
     pointTemperature = 75;
@@ -92,7 +94,7 @@ void do250msLoop() {
         Serial.println(F("No more addresses."));
         Spark.publish("sousInfo", "0.0|0.0|0|0.0|0.0|0.0|0");
         // Turn off the relay during the scan
-        digitalWrite(relayPin, LOW);
+        digitalWrite(relayPin, relayOFF);
         // Restart search
         ds18b20.resetsearch();
         return;
@@ -118,10 +120,10 @@ void doPWM() {
     if (now - windowStartTime > windowSize) windowStartTime = now;
 
     if (now - windowStartTime < onTime) {
-        digitalWrite(relayPin, HIGH); // turn on
+        digitalWrite(relayPin, relayON);
     }
     else {
-        digitalWrite(relayPin, LOW); // turn off
+        digitalWrite(relayPin, relayOFF);
     }
 }
 
